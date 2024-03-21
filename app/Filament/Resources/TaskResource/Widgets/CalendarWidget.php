@@ -2,18 +2,14 @@
 
 namespace App\Filament\Resources\TaskResource\Widgets;
 
-use Filament\Widgets\Widget;
- 
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Model;
 use Saade\FilamentFullCalendar\Widgets\FullCalendarWidget;
 
-class CalendarWidget extends Widget
+class CalendarWidget extends FullCalendarWidget
 {
-    protected static string $view = 'filament.resources.task-resource.widgets.calendar-widget';
-
     public Model | string | null $model = Task::class;
- 
+
     public function fetchEvents(array $fetchInfo): array
     {
         return Task::where('start', '>=', $fetchInfo['start'])
@@ -33,7 +29,7 @@ class CalendarWidget extends Widget
 
     public static function canView(): bool
     {
-        return false;
+        return true;
     }
 
 }
